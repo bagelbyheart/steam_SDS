@@ -1,0 +1,23 @@
+[Unit]
+Description=Valheim Dedicated Server
+After=network-online.target
+
+[Service]
+# VERSION: 1.0.0
+Type=simple
+# User and Group should be updated to the user running steamcmd
+User=steam
+Group=steam
+# This should be the directory your servers are stored in.
+WorkingDirectory=/home/steam/
+StandardOutput=journal
+# These commands should be pointing to a *_server.sh file.
+ExecStart=/home/steam/valheim_server.sh start
+ExecReload=/home/steam/valheim_server.sh upgrade
+ExecStop=/home/steam/valheim_server.sh stop
+# This will restart the server if it crashes.
+Restart=always
+# Other restart options: always, on-abort, etc
+
+[Install]
+WantedBy=default.target
